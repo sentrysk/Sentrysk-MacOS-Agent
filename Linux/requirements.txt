@@ -1,3 +1,0 @@
-psutil
-pkg_resources
-docker

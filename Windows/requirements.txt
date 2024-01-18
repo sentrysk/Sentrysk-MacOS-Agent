@@ -1,5 +1,0 @@
-psutil==5.9.6
-pywin32
-docker==6.1.3
-wmi==1.5.1
-pkg_resources
