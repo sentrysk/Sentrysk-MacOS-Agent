@@ -5,6 +5,9 @@
 import json
 import os
 import logging
+import schedule
+import requests
+import time
 
 from Modules.system_info import get_system_info
 from Modules.user_info import get_user_info
@@ -47,24 +50,116 @@ logging.basicConfig(
     format=FORMAT,
     encoding='utf-8'
 )
+
+# Get Scheduled Jobs from Config
+scheduled_jobs = config['scheduled_jobs']
 ##############################################################################
 
 # Functions
 ##############################################################################
-"""
-    Retrieve system information.
-"""
+# System Info Sender Function
+def send_system_info():
+    try:
+        url = str(base_url) + endpoints["system_info"]
 
-system_info = {}
+        payload = json.dumps(get_system_info(), indent=4)
 
-system_info['system']               = get_system_info()
-system_info['users']                = get_user_info()
-system_info['services']             = get_service_info()
-system_info['last_logons']          = get_last_logons()
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Users Info Sender Function
+def send_user_info():
+    try:
+        url = str(base_url) + endpoints["user_info"]
+
+        payload = json.dumps({"users":get_user_info()})
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Installed Apps Info Sender Function
+def send_installed_programs():
+    try:
+        url = str(base_url) + endpoints["installed_programs"]
+
+        payload = json.dumps({"apps":get_installed_programs()})
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Services Info Sender Function
+def send_service_info():
+    try:
+        url = str(base_url) + endpoints["service_info"]
+
+        payload = json.dumps({"services":get_service_info()})
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Last Logons Info Sender Function
+def send_last_logons():
+    try:
+        url = str(base_url) + endpoints["last_logons"]
+
+        payload = json.dumps({"last_logons":get_last_logons()})
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 ##############################################################################
 
-# Usage
-json_data = json.dumps(system_info, indent=4)
-with open('result.json','w') as f:
-    f.write(json_data)
-print(json_data)
+# Schedule jobs
+for job_name, job_config in scheduled_jobs.items():
+    if "interval" in job_config:
+        interval = job_config["interval"]
+        unit = job_config.get("unit", "minutes")
+        getattr(schedule.every(interval), unit).do(eval(job_name))
+    elif "time" in job_config:
+        time_str = job_config["time"]
+        schedule.every().day.at(time_str).do(eval(job_name))
+
+# Run 
+while True:
+    schedule.run_pending()
+    time.sleep(60)  # Check every 60 seconds
