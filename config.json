@@ -6,7 +6,8 @@
         "user_info": "/sysusers/",
         "installed_programs": "/sysapps/",
         "service_info": "/sysservices/",
-        "last_logons": "/sysusers/lastlogons/"
+        "last_logons": "/sysusers/lastlogons/",
+        "pip_pkgs": "/pippkgs/"
       },
       "agent_token": "your_agent_token_here"
     },
@@ -19,6 +20,7 @@
       "send_user_info":{"interval": 1, "unit": "minutes"},
       "send_installed_programs": {"interval": 1, "unit": "minutes"},
       "send_service_info": {"interval": 1, "unit": "minutes"},
-      "send_last_logons": {"interval": 1, "unit": "minutes"}
+      "send_last_logons": {"interval": 1, "unit": "minutes"},
+      "send_pip_packages": {"interval": 1, "unit": "minutes"}
     }
 }
