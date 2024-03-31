@@ -22,6 +22,7 @@
       "send_installed_programs": {"interval": 1, "unit": "minutes"},
       "send_service_info": {"interval": 1, "unit": "minutes"},
       "send_last_logons": {"interval": 1, "unit": "minutes"},
-      "send_pip_packages": {"interval": 1, "unit": "minutes"}
+      "send_pip_packages": {"interval": 1, "unit": "minutes"},
+      "send_npm_packages": {"interval": 1, "unit": "minutes"}
     }
 }
