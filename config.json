@@ -7,7 +7,8 @@
         "installed_programs": "/sysapps/",
         "service_info": "/sysservices/",
         "last_logons": "/sysusers/lastlogons/",
-        "pip_pkgs": "/pippkgs/"
+        "pip_pkgs": "/pippkgs/",
+        "npm_pkgs": "/npmpkgs/"
       },
       "agent_token": "your_agent_token_here"
     },
