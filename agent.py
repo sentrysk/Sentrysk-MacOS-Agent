@@ -13,6 +13,7 @@ from Modules.system_info import get_system_info
 from Modules.user_info import get_user_info
 from Modules.service_info import get_service_info
 from Modules.last_logon import get_last_logons
+from Modules.pip_info import get_pip_packages
 from Modules.npm_info import get_npm_packages
 ##############################################################################
 
@@ -136,6 +137,29 @@ def send_last_logons():
         url = str(base_url) + endpoints["last_logons"]
 
         payload = json.dumps({"last_logons":get_last_logons()})
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Pip Packages Info Sender Function
+def send_pip_packages():
+    try:
+        url = str(base_url) + endpoints["pip_pkgs"]
+
+        pip_info = get_pip_packages()
+
+        payload = json.dumps({
+            "is_installed": pip_info["is_installed"],
+            "pip_packages": pip_info["packages"]
+        })
 
         headers = {
             'Authorization': agent_token,
