@@ -57,9 +57,7 @@ def get_docker_info():
             "containers": [],
             "volumes": [],
             "networks": [],
-            "disk_usage": {
-                "total_space": convert_size(disk_usage["LayersSize"])
-            }
+            "disk_usage": convert_size(disk_usage["LayersSize"])
         }
 
         # Collect Docker image information
