@@ -8,7 +8,8 @@
         "service_info": "/sysservices/",
         "last_logons": "/sysusers/lastlogons/",
         "pip_pkgs": "/pippkgs/",
-        "npm_pkgs": "/npmpkgs/"
+        "npm_pkgs": "/npmpkgs/",
+        "docker_info": "/dockerinfo/"
       },
       "agent_token": "your_agent_token_here"
     },
