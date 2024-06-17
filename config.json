@@ -9,7 +9,8 @@
         "last_logons": "/sysusers/lastlogons/",
         "pip_pkgs": "/pippkgs/",
         "npm_pkgs": "/npmpkgs/",
-        "docker_info": "/dockerinfo/"
+        "docker_info": "/dockerinfo/",
+        "agent_config": "/agent/config/"
       },
       "agent_token": "your_agent_token_here"
     },
@@ -25,6 +26,7 @@
       "send_last_logons": {"interval": 1, "unit": "minutes"},
       "send_pip_packages": {"interval": 1, "unit": "minutes"},
       "send_npm_packages": {"interval": 1, "unit": "minutes"},
-      "send_docker_info": {"interval": 1, "unit": "minutes"}
+      "send_docker_info": {"interval": 1, "unit": "minutes"},
+      "send_agent_config": {"interval": 5, "unit": "minutes"}
     }
 }
