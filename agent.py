@@ -17,6 +17,7 @@ from Modules.last_logon import get_last_logons
 from Modules.pip_info import get_pip_packages
 from Modules.npm_info import get_npm_packages
 from Modules.docker_info import get_docker_info
+from Modules.disk_usage_info import get_disk_usage_info
 ##############################################################################
 
 # Configs
@@ -224,6 +225,26 @@ def send_agent_config():
 
         payload = json.dumps(config)
 
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# Disk Usage Sender Function
+def send_disk_usage():
+    try:
+        url = str(base_url) + endpoints["disk_usage"]
+
+        payload = json.dumps({
+           "disk_usage": get_disk_usage_info()
+        })
+        print(payload)
         headers = {
             'Authorization': agent_token,
             'Content-Type': 'application/json'
