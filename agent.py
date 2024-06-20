@@ -217,6 +217,24 @@ def send_docker_info():
     except Exception as e:
         print(e)
 
+# Agent Config Sender Function
+def send_agent_config():
+    try:
+        url = str(base_url) + endpoints["agent_config"]
+
+        payload = json.dumps(config)
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 ##############################################################################
 
 # Schedule jobs
