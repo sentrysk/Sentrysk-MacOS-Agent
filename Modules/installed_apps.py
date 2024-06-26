@@ -8,7 +8,7 @@ import json
 
 # Functions
 ##############################################################################
-def get_installed_apps():
+def get_installed_programs():
     try:
         # Execute the shell command to list installed applications
         installed_apps_output = subprocess.check_output(
