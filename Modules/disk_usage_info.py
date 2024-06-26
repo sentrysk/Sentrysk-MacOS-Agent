@@ -18,8 +18,7 @@ def get_disk_usage_info():
             disk_info_list.append({
                 'device': partition.device,
                 'total_size': disk_usage.total,
-                'used_size': disk_usage.used,
-                'free_size': disk_usage.free
+                'used_size': disk_usage.used
             })
         except PermissionError as e:
             # Log the error
