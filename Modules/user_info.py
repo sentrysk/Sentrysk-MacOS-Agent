@@ -16,11 +16,11 @@ def get_user_info():
         # Iterate through the user entries in the /etc/passwd file
         for entry in pwd.getpwall():
             user_info = {
-                "username": entry.pw_name,
-                "user_id": entry.pw_uid,
-                "group_id": entry.pw_gid,
-                "home_directory": entry.pw_dir,
-                "shell": entry.pw_shell,
+                "username": str(entry.pw_name),
+                "user_id": str(entry.pw_uid),
+                "group_id": str(entry.pw_gid),
+                "home_directory": str(entry.pw_dir),
+                "shell": str(entry.pw_shell),
             }
             users.append(user_info)
             
