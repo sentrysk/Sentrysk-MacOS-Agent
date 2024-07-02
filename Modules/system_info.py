@@ -29,8 +29,8 @@ def get_system_info():
     system_info["os"]["kernel"] = platform.release() # Kernel
 
     # Collect domain/host information
-    system_info["domain"]["hostname"] = platform.node()
-    system_info["domain"]["fqdn"] = platform.node()
+    system_info["domain"]["domain"] = socket.getfqdn()
+    system_info["domain"]["dns_hostname"] = socket.gethostname()
 
     # Collect CPU information
     system_info["cpu"]["cpu_count"] = psutil.cpu_count(logical=False)
