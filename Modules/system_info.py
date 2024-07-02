@@ -66,14 +66,14 @@ def get_system_info():
             elif addr.family == socket.AF_INET:
                 # IPv4 address 
                 system_info["network_interfaces"][interface]["IPv4"] = {
-                    "ip_address": addr.address,
+                    "address": addr.address,
                     "netmask": addr.netmask,
                     "broadcast": addr.broadcast
                 }
             elif addr.family == socket.AF_INET6:
                 # IPv6 address
                 system_info["network_interfaces"][interface]["IPv4"] = {
-                    "ip_address": addr.address,
+                    "address": addr.address,
                     "netmask": addr.netmask,
                     "broadcast": None
                 }
