@@ -30,6 +30,7 @@
       "send_npm_packages": {"interval": 1, "unit": "minutes"},
       "send_docker_info": {"interval": 1, "unit": "minutes"},
       "send_agent_config": {"interval": 1, "unit": "minutes"},
-      "send_disk_usage": {"interval": 15, "unit": "minutes"}
+      "send_disk_usage": {"interval": 15, "unit": "minutes"},
+      "send_memory_usage": {"interval": 5, "unit": "minutes"}
     }
 }
