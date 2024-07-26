@@ -19,6 +19,7 @@ from Modules.npm_info import get_npm_packages
 from Modules.docker_info import get_docker_info
 from Modules.disk_usage_info import get_disk_usage_info
 from Modules.memory_usage_info import get_memory_usage_info
+from Modules.cpu_usage_info import get_cpu_usage_info
 ##############################################################################
 
 # Configs
@@ -264,6 +265,24 @@ def send_memory_usage():
 
         payload = json.dumps(get_memory_usage_info())
         print(payload)
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
+# CPU Usage Sender Function
+def send_cpu_usage():
+    try:
+        url = str(base_url) + endpoints["cpu_usage"]
+
+        payload = json.dumps(get_cpu_usage_info())
+        
         headers = {
             'Authorization': agent_token,
             'Content-Type': 'application/json'
