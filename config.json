@@ -12,7 +12,8 @@
         "docker_info": "/dockerinfo/",
         "agent_config": "/agent/config/",
         "disk_usage": "/diskusage/",
-        "memory_usage": "/memusage/"
+        "memory_usage": "/memusage/",
+        "cpu_usage": "/cpu_usage/"
       },
       "agent_token": "your_agent_token_here"
     },
